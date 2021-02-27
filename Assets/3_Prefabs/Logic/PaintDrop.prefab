@@ -4974,6 +4974,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loopTime: 1.8
+  useRandomImpactPoint: 1
+  ImpactPoint: {x: -5, y: -5, z: -5, w: 18}
 --- !u!114 &4647758544039289330
 MonoBehaviour:
   m_ObjectHideFlags: 0

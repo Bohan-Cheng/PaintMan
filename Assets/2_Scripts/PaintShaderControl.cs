@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PaintShaderControl : MonoBehaviour {
 
     [SerializeField]float loopTime = 1.8f;
+    [SerializeField] bool useRandomImpactPoint;
+    [SerializeField] Vector4 ImpactPoint;
     Renderer modelRenderer;
     float controlTime;
 
     // Use this for initialization
     void Start () {
+        if(useRandomImpactPoint)
+        {
+            ImpactPoint.x = Random.Range(-5.0f, 5.0f);
+            ImpactPoint.y = Random.Range(-5.0f, 5.0f);
+            ImpactPoint.z = Random.Range(-5.0f, 5.0f);
+        }
         modelRenderer = GetComponent<MeshRenderer>();
+        Vector4 pos = transform.position;
+        modelRenderer.material.SetVector("_ImpactOrigin", ImpactPoint + pos);
     }
 
 	// Update is called once per frame

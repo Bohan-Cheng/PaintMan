@@ -56,6 +56,8 @@ public class PaintDrop : MonoBehaviour
             GetComponent<AudioSource>().Play();
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<SphereCollider>().enabled = false;
+            other.GetComponent<PlayerControl>().meshRenderer.material.color = 
+            (other.GetComponent<PlayerControl>().meshRenderer.material.color + FindMat(paintColor).color)/2;
             Invoke("KillSelf", SplashParticle.main.duration);
         }
     }

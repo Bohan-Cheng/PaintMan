@@ -205,7 +205,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &4853445877780890655
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -213,13 +213,60 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2679410824602720178}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 260a6a0a734a4db418925a69025ac9d0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.5
   m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 3, z: 0}
+--- !u!114 &3735783749629702661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2679410824602720178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f361210db688040ae37eade10c0f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveInput:
+    m_Name: Move Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 201cfae8-cb7e-418a-a61a-039bc7ab8b37
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: cce2608a-a2fd-4805-b785-4b3cc875cab1
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: e777df76-8b45-47e2-98d6-07b04a2b85c2
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 029f635c-f82d-4bab-8872-c924ef178002
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Input
+      m_Flags: 8
+  meshRenderer: {fileID: 2652271676376114324}
+  runSpeed: 6
+  turnSpeed: 8000
 --- !u!1001 &2677838225151021674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -293,5 +340,10 @@ GameObject:
 --- !u!4 &2676932102701049698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4442292949824776, guid: eea16ef0f58854448aaa9db9257bc84b, type: 3}
+  m_PrefabInstance: {fileID: 2677838225151021674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &2652271676376114324 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137171377515706110, guid: eea16ef0f58854448aaa9db9257bc84b, type: 3}
   m_PrefabInstance: {fileID: 2677838225151021674}
   m_PrefabAsset: {fileID: 0}
