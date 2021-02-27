@@ -24,20 +24,15 @@ public class PaintDrop : MonoBehaviour
     [SerializeField] bool RandomColor = true;
     [SerializeField] EPaintColor paintColor = EPaintColor.DEFUALT;
     [SerializeField] ColorMap[] colorMap;
-    // Start is called before the first frame update
+    [SerializeField] ParticleSystem SplashParticle;
+
     void Start()
     {
         if(RandomColor)
         {
             paintColor = (EPaintColor)UnityEngine.Random.Range(0, (int)EPaintColor.DEFUALT);
         }
-        GetComponent<Renderer>().material = FindMat(paintColor);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetComponent<Renderer>().material = SplashParticle.GetComponent<ParticleSystemRenderer>().material = FindMat(paintColor);
     }
 
     Material FindMat(EPaintColor color)
@@ -50,5 +45,28 @@ public class PaintDrop : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            SplashOnCam();
+            SplashParticle.Play();
+            GetComponent<AudioSource>().Play();
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
+            Invoke("KillSelf", SplashParticle.main.duration);
+        }
+    }
+
+    void KillSelf()
+    {
+        Destroy(gameObject);
+    }
+
+    void SplashOnCam()
+    {
+        Camera.main.gameObject.GetComponent<CamScript>().SplashColor(FindMat(paintColor).color);
     }
 }
