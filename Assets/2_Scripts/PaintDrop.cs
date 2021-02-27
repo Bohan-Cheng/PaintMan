@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-enum EPaintColor
+public enum EPaintColor
 {
     BLUE,
     GREEN,

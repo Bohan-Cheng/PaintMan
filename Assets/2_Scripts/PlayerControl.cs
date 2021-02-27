@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] InputAction MoveInput;
+    [SerializeField] Transform loopTarget;
+    [SerializeField] Transform StartTarget;
     public SkinnedMeshRenderer meshRenderer;
+    Color OriColor;
     public float runSpeed = 1.0f;
     public float turnSpeed = 5000.0f;
 
     bool IsStarted = false;
-    Vector3 StartPosition;
     Rigidbody rigid;
     // Start is called before the first frame update
 
@@ -32,7 +34,7 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        StartPosition = transform.position;
+        OriColor = meshRenderer.material.color;
         Invoke("StartRunning", 3.0f);
     }
 
@@ -41,14 +43,23 @@ public class PlayerControl : MonoBehaviour
     {
         if (IsStarted)
         {
+            LoopPlayer();
             rigid.velocity = new Vector3(0.0f, 0.0f, runSpeed);
             rigid.AddForce(new Vector3(MoveInput.ReadValue<float>() * turnSpeed * Time.deltaTime, 0.0f, 0.0f));
         }
     }
 
-    public void ResetPlayer()
+    void LoopPlayer()
     {
-        transform.position = StartPosition;
+        if (transform.position.z >= loopTarget.position.z)
+        {
+            transform.position = new Vector3(transform.position.x, StartTarget.position.y, StartTarget.position.z);
+        }
+    }
+
+    public void ReColorPlayer()
+    {
+        meshRenderer.material.color = OriColor;
     }
 
     void StartRunning()

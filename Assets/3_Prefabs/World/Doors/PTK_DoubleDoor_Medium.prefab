@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4919680131622990}
   - component: {fileID: 33279863226056776}
   - component: {fileID: 23063738617572084}
-  - component: {fileID: 64520127087228590}
   m_Layer: 0
   m_Name: Door_5
   m_TagString: Untagged
@@ -82,20 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64520127087228590
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185062567145108}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: ab402a8bf9fedf444b0dcfae747a48e6, type: 3}
 --- !u!1 &1188889400368964
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +92,9 @@ GameObject:
   - component: {fileID: 4350565729654236}
   - component: {fileID: 33496582118830590}
   - component: {fileID: 23142661572040608}
-  - component: {fileID: 64892964085948822}
+  - component: {fileID: 3950088280427664457}
+  - component: {fileID: 48791026536500661}
+  - component: {fileID: 8751371507781402337}
   m_Layer: 0
   m_Name: PTK_DoubleDoor_Medium
   m_TagString: Untagged
@@ -124,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 1188889400368964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4919680131622990}
   - {fileID: 4600996452938272}
@@ -180,20 +167,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64892964085948822
-MeshCollider:
+--- !u!65 &3950088280427664457
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188889400368964}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ab402a8bf9fedf444b0dcfae747a48e6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 1.9999999, z: 1.9999998}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &48791026536500661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188889400368964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b46c90d5d7bd3341bc0759b766864c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door1MR: {fileID: 23063738617572084}
+  Door2MR: {fileID: 23976773585073784}
+  RandomColor: 1
+  paintColor: 4
+  colorMap:
+  - colorType: 0
+    colorMat: {fileID: 2100000, guid: afde9157193e3754c8f2f104321b60ae, type: 2}
+  - colorType: 1
+    colorMat: {fileID: 2100000, guid: e446d067128fb854aab469d8023b05a3, type: 2}
+  - colorType: 2
+    colorMat: {fileID: 2100000, guid: 626f724467ba2ba4998b6471fd42a6c3, type: 2}
+  - colorType: 3
+    colorMat: {fileID: 2100000, guid: 16481b4a1e824d046a58c5a3a6710b42, type: 2}
+--- !u!95 &8751371507781402337
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188889400368964}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 06f3aa5a12bbab545b6096f6f053168a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1791137924664856
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +235,6 @@ GameObject:
   - component: {fileID: 4600996452938272}
   - component: {fileID: 33168963839669166}
   - component: {fileID: 23976773585073784}
-  - component: {fileID: 64239285640288264}
   m_Layer: 0
   m_Name: Door_6
   m_TagString: Untagged
@@ -276,17 +305,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64239285640288264
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791137924664856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: ab402a8bf9fedf444b0dcfae747a48e6, type: 3}

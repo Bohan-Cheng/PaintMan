@@ -264,9 +264,10 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Move Input
       m_Flags: 8
+  loopTarget: {fileID: 0}
   meshRenderer: {fileID: 2652271676376114324}
   runSpeed: 6
-  turnSpeed: 8000
+  turnSpeed: 20000
 --- !u!1001 &2677838225151021674
 PrefabInstance:
   m_ObjectHideFlags: 0
