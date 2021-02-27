@@ -330,6 +330,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3608861214134231016, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
+      propertyPath: loopTime
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3608861214134231020, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -694,6 +698,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3608861214134231016, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
+      propertyPath: loopTime
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3608861214134231020, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1147,6 +1155,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3608861214134231016, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
+      propertyPath: loopTime
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3608861214134231020, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1509,6 +1521,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3608861214134231016, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
+      propertyPath: loopTime
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608861214134231016, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
+      propertyPath: controlTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3608861214134231020, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1817,6 +1837,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3608861214134231016, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
+      propertyPath: loopTime
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3608861214134231020, guid: 7d5bba33065ce3146bc6f9f525dfeb1c, type: 3}
       propertyPath: m_RootOrder
       value: 5

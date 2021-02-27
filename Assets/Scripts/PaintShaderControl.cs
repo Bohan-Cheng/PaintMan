@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PaintShaderControl : MonoBehaviour {
 
+    [SerializeField]float loopTime = 1.8f;
     Renderer modelRenderer;
     float controlTime;
 
@@ -15,8 +16,11 @@ public class PaintShaderControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if (controlTime >= loopTime)
+        {
+            controlTime = 0;
+        }
         controlTime += Time.deltaTime;
-
         modelRenderer.material.SetFloat("_ControlTime", controlTime);
 	}
 }
