@@ -27,7 +27,7 @@ Material:
     - _Amplitude: 5
     - _ControlTime: 0
     - _Frequency: 10
-    - _Glossiness: 0.8
+    - _Glossiness: 0.9
     - _ImpactSpeed: 0.2
     - _MaxWaveDistortion: 1
     - _Metallic: 0
