@@ -9,7 +9,7 @@ Shader "Custom/PaintShader" {
 
 		_ControlTime ("Time", float) = 0
 		_ModelOrigin ("Model Origin", Vector) = (0,0,0,0)
-		_ImpactOrigin ("Impact Origin", Vector) = (-5,0,0,0)
+		_ImpactOrigin ("Impact Origin", Vector) = (-5,-5,-5,0)
 
 		_Frequency ("Frequency", Range(0, 1000)) = 10
 		_Amplitude ("Amplitude", Range(0, 5)) = 0.1
@@ -55,16 +55,17 @@ Shader "Custom/PaintShader" {
 		// #pragma instancing_options assumeuniformscaling
 		UNITY_INSTANCING_BUFFER_START(Props)
 			// put more per-instance properties here
+
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		void vert (inout appdata_base v) {
-			float4 world_space_vertex = mul(unity_ObjectToWorld, v.vertex);
+			//float4 world_space_vertex = mul(unity_ObjectToWorld, v.vertex);
 
 			float4 direction = normalize(_ModelOrigin - _ImpactOrigin);
 			float4 origin = _ImpactOrigin + _ControlTime * _ImpactSpeed * direction;
 			
 			//Get the distance in world space from our vertex to the wave origin.
-			float dist = distance(world_space_vertex, origin);
+			float dist = distance(_ImpactOrigin, origin);
 
 			//Adjust our distance to be non-linear.
 			dist = pow(dist, _WaveFalloff);
@@ -72,12 +73,12 @@ Shader "Custom/PaintShader" {
 			//Set the max amount a wave can be distorted based on distance.
 			dist = max(dist, _MaxWaveDistortion);
 
-			//Convert direction and _ImpactOrigin to model space for later trig magic.
-			float4 l_ImpactOrigin = mul(unity_WorldToObject, _ImpactOrigin);
-			float4 l_direction = mul(unity_WorldToObject, direction);
+			////Convert direction and _ImpactOrigin to model space for later trig magic.
+			//float4 l_ImpactOrigin = mul(unity_WorldToObject, _ImpactOrigin);
+			//float4 l_direction = mul(unity_WorldToObject, direction);
 
 			//Magic
-			float impactAxis = l_ImpactOrigin + dot((v.vertex - l_ImpactOrigin), l_direction);
+			float impactAxis = _ImpactOrigin + dot((v.vertex - _ImpactOrigin), direction);
 
 			v.vertex.xyz += v.normal * sin(impactAxis * _Frequency + _ControlTime * _WaveSpeed) * _Amplitude * (1 / dist);
 		}
