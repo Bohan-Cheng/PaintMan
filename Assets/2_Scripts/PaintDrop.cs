@@ -25,14 +25,26 @@ public class PaintDrop : MonoBehaviour
     [SerializeField] EPaintColor paintColor = EPaintColor.DEFUALT;
     [SerializeField] ColorMap[] colorMap;
     [SerializeField] ParticleSystem SplashParticle;
+    bool isHidden = false;
 
     void Start()
     {
-        if(RandomColor)
+        if (!isHidden)
+        {
+            ResetDrop();
+        }
+    }
+
+    public void ResetDrop()
+    {
+        isHidden = false;
+        if (RandomColor)
         {
             paintColor = (EPaintColor)UnityEngine.Random.Range(0, (int)EPaintColor.DEFUALT);
         }
         GetComponent<Renderer>().material = SplashParticle.GetComponent<ParticleSystemRenderer>().material = FindMat(paintColor);
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<SphereCollider>().enabled = true;
     }
 
     Material FindMat(EPaintColor color)
@@ -54,17 +66,19 @@ public class PaintDrop : MonoBehaviour
             SplashOnCam();
             SplashParticle.Play();
             GetComponent<AudioSource>().Play();
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<SphereCollider>().enabled = false;
+            HideDrop();
             PlayerControl pc = other.gameObject.GetComponent<PlayerControl>();
             pc.meshRenderer.material.color = (pc.meshRenderer.material.color + FindMat(paintColor).color)/2;
-            Invoke("KillSelf", SplashParticle.main.duration);
+            pc.hasColor = true;
+            pc.Score(8);
         }
     }
 
-    void KillSelf()
+    public void HideDrop()
     {
-        Destroy(gameObject);
+        isHidden = true;
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<SphereCollider>().enabled = false;
     }
 
     void SplashOnCam()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pass : MonoBehaviour
 {
+    [SerializeField] AudioClip clip_Score, clip_Crash;
+    [SerializeField] GameMana GM;
     [SerializeField] Pass EndPass;
     [SerializeField] MeshRenderer Door1MR;
     [SerializeField] MeshRenderer Door2MR;
@@ -17,6 +19,7 @@ public class Pass : MonoBehaviour
 
     private void Awake()
     {
+        GM = FindObjectOfType<GameMana>();
         anim = GetComponent<Animator>();
         if (shouldOpen)
         {
@@ -75,25 +78,73 @@ public class Pass : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            bool CloseColor = CompareColor(GM.player.meshRenderer.material.color, Door1MR.material.color);
+            if (CloseColor && GM.player.hasColor)
+            {
+                Score(GetScore(GM.player.meshRenderer.material.color));
+            }
+            else
+            {
+                Crash();
+            }
             shouldReset = true;
             OpenDoor();
-            Invoke("DoneReset", 2.0f);
-            other.gameObject.GetComponent<PlayerControl>().ReColorPlayer();
+            Invoke("DoneReset", 5.0f);
+            GM.player.ReColorPlayer();
         }
+    }
+
+    bool CompareColor(Color col1, Color col2)
+    {
+        return 
+           IsLargest(col1.r, col1) && IsLargest(col2.r, col2)
+        || IsLargest(col1.g, col1) && IsLargest(col2.g, col2)
+        || IsLargest(col1.b, col1) && IsLargest(col2.b, col2);
+    }
+
+    bool IsLargest(float colV, Color col)
+    {
+        float max = col.r;
+        if(col.g > max)
+        {
+            max = col.g;
+        }
+        if(col.b > max)
+        {
+            max = col.b;
+        }
+        return colV == max;
+    }
+
+    int GetScore(Color col)
+    {
+        float max = col.r;
+        if (col.g > max)
+        {
+            max = col.g;
+        }
+        if (col.b > max)
+        {
+            max = col.b;
+        }
+        return (int)(max*100);
     }
 
     void DoneReset()
     {
-        shouldReset = false;
-        CloseDoor();
-        if (RandomColor)
+        if (!GM.IsGameOver)
         {
-            paintColor = (EPaintColor)Random.Range(0, (int)EPaintColor.DEFUALT);
-            OriColor = FindMat(paintColor).color;
+            shouldReset = false;
+            CloseDoor();
+            if (RandomColor)
+            {
+                paintColor = (EPaintColor)Random.Range(0, (int)EPaintColor.DEFUALT);
+                OriColor = FindMat(paintColor).color;
+            }
+            ResetStartPass();
+            Door1MR.material.color = OriColor;
+            Door2MR.material.color = OriColor;
         }
-        ResetStartPass();
-        Door1MR.material.color = OriColor;
-        Door2MR.material.color = OriColor;
     }
 
     void ResetStartPass()
@@ -103,5 +154,19 @@ public class Pass : MonoBehaviour
             paintColor = EndPass.paintColor;
             OriColor = FindMat(paintColor).color;
         }
+    }
+
+    void Score(int score)
+    {
+        GetComponent<AudioSource>().PlayOneShot(clip_Score);
+        GM.AddScore(score);
+    }
+
+    void Crash()
+    {
+        GetComponent<AudioSource>().PlayOneShot(clip_Crash);
+        GM.player.Stuned();
+        GM.Health--;
+        GM.CheckHealth();
     }
 }
