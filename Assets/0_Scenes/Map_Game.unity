@@ -657,12 +657,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401147588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.0157542, y: 2.6406991, z: -1.5145307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1851163731}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &401147590
 MonoBehaviour:
@@ -684,7 +684,10 @@ MonoBehaviour:
   DropsManas: []
   CDText: {fileID: 1934777009}
   ScoreText: {fileID: 646308878}
-  HP: []
+  HP:
+  - {fileID: 2082663279}
+  - {fileID: 1878364812}
+  - {fileID: 106104333}
   clip_CD: {fileID: 8300000, guid: cc322fc0ed2f4f3409c7bcfecd1274b5, type: 3}
   clip_Start: {fileID: 8300000, guid: 08f6e00a4eafa23408f80af88201bde4, type: 3}
 --- !u!82 &401147591
@@ -1022,7 +1025,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 534221419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 568780648}
+        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+        m_MethodName: ClosePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &534221419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,6 +1155,7 @@ GameObject:
   - component: {fileID: 568780646}
   - component: {fileID: 568780645}
   - component: {fileID: 568780644}
+  - component: {fileID: 568780648}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1232,6 +1248,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &568780648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568780643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2031d6e7ffaac41862c7e3a732a57c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CreditPan: {fileID: 0}
+  ButtonsPan: {fileID: 0}
+  PauseCanvas: {fileID: 572826612}
+  PauseInput:
+    m_Name: Pause Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7264f464-382b-4806-91e2-4806ed8bc054
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: da8eb3ea-b71a-4bf0-8f32-b7fab9cb29a3
+      m_Path: <Keyboard>/escape
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Input
+      m_Flags: 0
 --- !u!1 &572826612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,7 +1844,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 666536683}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 568780648}
+        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &666536683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1986,7 +2045,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 815402194}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 568780648}
+        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+        m_MethodName: GotoMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &815402194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3623,7 +3694,6 @@ Transform:
   - {fileID: 1825071349}
   - {fileID: 169620231}
   - {fileID: 131519757}
-  - {fileID: 401147589}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

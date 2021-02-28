@@ -17,18 +17,17 @@ public class GameMana : MonoBehaviour
     [SerializeField] AudioClip clip_CD;
     [SerializeField] AudioClip clip_Start;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerControl>();
         DropsManas = FindObjectsOfType<DropsManager>();
         StartCoroutine(CountDown());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void CheckHealth()
@@ -38,6 +37,7 @@ public class GameMana : MonoBehaviour
             player.StopPlaying();
             IsGameOver = true;
         }
+        UpdateUI();
     }
 
     public void ResetMap()
@@ -67,6 +67,24 @@ public class GameMana : MonoBehaviour
     void UpdateUI()
     {
         ScoreText.text = Score.ToString();
+        if(Health == 2)
+        {
+            HP[2].enabled = false;
+        }
+        else if(Health == 1)
+        {
+            HP[1].enabled = false;
+        }
+        else if(Health == 0)
+        {
+            HP[0].enabled = false;
+            Invoke("EndGame", 2.0f);
+        }
+    }
+
+    void EndGame()
+    {
+        FindObjectOfType<UIControl>().GotoEnd();
     }
 
     public void AddScore(int score)

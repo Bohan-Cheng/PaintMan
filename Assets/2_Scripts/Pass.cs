@@ -96,10 +96,16 @@ public class Pass : MonoBehaviour
 
     bool CompareColor(Color col1, Color col2)
     {
-        return 
+        return
            IsLargest(col1.r, col1) && IsLargest(col2.r, col2)
         || IsLargest(col1.g, col1) && IsLargest(col2.g, col2)
-        || IsLargest(col1.b, col1) && IsLargest(col2.b, col2);
+        || IsLargest(col1.b, col1) && IsLargest(col2.b, col2)
+        || IsLargest(MidY(col1.r, col1.g), col1) && IsLargest(MidY(col2.r, col2.g), col2);
+    }
+
+    float MidY(float r, float g)
+    {
+        return (r + g) / 2;
     }
 
     bool IsLargest(float colV, Color col)
@@ -112,6 +118,10 @@ public class Pass : MonoBehaviour
         if(col.b > max)
         {
             max = col.b;
+        }
+        if (MidY(col.r, col.g) > max)
+        {
+            max = MidY(col.r, col.g);
         }
         return colV == max;
     }
@@ -126,6 +136,10 @@ public class Pass : MonoBehaviour
         if (col.b > max)
         {
             max = col.b;
+        }
+        if (MidY(col.r, col.g) > max)
+        {
+            max = MidY(col.r, col.g);
         }
         return (int)(max*100);
     }
